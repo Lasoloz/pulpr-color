@@ -1,0 +1,18 @@
+{
+  "name": "pulpr",
+  "version": "0.1.0",
+  "description": "A pulpy and colorful minimalistic sass framework",
+  "main": "webpack-dev-server",
+  "scripts": {
+    "watch-scss": "sass --watch scss:example/stylesheets",
+    "watch-example": "node build/serve.js",
+    "watch": "yarn watch-scss & yarn watch-example"
+  },
+  "author": "László Heim <lasolozdev@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "sass": "^1.18.0"
+  }
+}
