@@ -1,7 +1,7 @@
 {
-  "name": "pulpr",
+  "name": "pulpr-color",
   "version": "0.1.0",
-  "description": "A pulpy and colorful framework-agnostic styling tool",
+  "description": "Color and theming utilities for a pulpy and colorful framework-agnostic styling tool",
   "scripts": {
     "clean:prod": "rm -rf dist",
     "clean:dev": "rm -rf example/dist",
