@@ -1,7 +1,13 @@
 .DS_Store
 node_modules
-/dist
-/example/stylesheets
+/dist/
+/example/dist/
+/example/static/stylesheets/
+
+/scss-old/
+
+# Parcel cache
+.cache/
 
 /tests/e2e/reports/
 selenium-debug.log

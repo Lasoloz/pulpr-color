@@ -1,0 +1,14 @@
+// Color utility mixins and functions
+
+// Coloring functions:
+@function p-color-level($color, $level) {
+    @if $level < 0 {
+        @return lighten($color, -$level * 5%);
+    } @else {
+        @return darken($color, $level * 5%);
+    }
+}
+
+@function p-grey-abs-level($level) {
+    @return darken(white, $level * 5%);
+}
