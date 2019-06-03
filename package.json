@@ -7,6 +7,8 @@
     "clean:dev": "rm -rf example/dist",
     "clean": "yarn clean:prod clean:dev",
     "build": "yarn clean:prod && sass scss:dist",
+    "doc:sass": "sassdoc scss -d docs/scss",
+    "doc": "yarn doc:sass",
     "serve": "parcel serve -d example/dist example/src/index.pug"
   },
   "author": "László Heim <lasolozdev@gmail.com>",
@@ -14,7 +16,9 @@
   "private": false,
   "dependencies": {},
   "devDependencies": {
+    "mathsass": "^0.10.1",
     "parcel-bundler": "^1.12.3",
+    "pug": "^2.0.3",
     "sass": "^1.20.3"
   }
 }

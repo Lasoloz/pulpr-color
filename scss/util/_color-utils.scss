@@ -1,14 +1,67 @@
 // Color utility mixins and functions
+@import "~mathsass/dist/_math";
 
 // Coloring functions:
 @function p-color-level($color, $level) {
-    @if $level < 0 {
-        @return lighten($color, -$level * 5%);
-    } @else {
-        @return darken($color, $level * 5%);
-    }
+  @if $level < 0 {
+    @return lighten($color, -$level * 5%);
+  } @else {
+    @return darken($color, $level * 5%);
+  }
 }
 
 @function p-grey-abs-level($level) {
-    @return darken(white, $level * 5%);
+  @return darken(white, $level * 5%);
+}
+
+// Contast functions:
+@function p-srgb-relative-luminance($component) {
+  @if $component <= 0.03928 {
+    @return $component / 12.92;
+  } @else {
+    @return pow((($component + 0.055) / 1.055), 2.4);
+  }
+}
+
+@function p-relative-luminance($color) {
+  $sr: red($color) / 255;
+  $sg: green($color) / 255;
+  $sb: blue($color) / 255;
+
+  @return
+    0.2126 * p-srgb-relative-luminance($sr) +
+    0.7152 * p-srgb-relative-luminance($sg) +
+    0.0722 * p-srgb-relative-luminance($sb);
+}
+
+@function p-contrast-ratio($color1, $color2) {
+  $lum1: p-relative-luminance($color1);
+  $lum2: p-relative-luminance($color2);
+
+  @if lightness($color1) > lightness($color2) {
+    @return ($lum1 + 0.05) / ($lum2 + 0.05);
+  } @else {
+    @return ($lum2 + 0.05) / ($lum1 + 0.05);
+  }
+}
+
+/// Calculate contrast ratio (https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef)
+/// based on
+/// relative luminance (https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef)
+/// for two different options passed to the base color
+/// @group color-utils
+/// @param {Color} $color Base color for witch we try to select one of the two options
+/// @param {Color} $option1 First option
+/// @param {Color} $option2 Second option
+/// @require p-contrast-ratio
+/// @returns {Color} One of the two options
+@function p-color-contrast-options($color, $option1, $option2) {
+  $cr1: p-contrast-ratio($color, $option1);
+  $cr2: p-contrast-ratio($color, $option2);
+
+  @if $cr1 > $cr2 {
+    @return $option1;
+  } @else {
+    @return $option2;
+  }
 }

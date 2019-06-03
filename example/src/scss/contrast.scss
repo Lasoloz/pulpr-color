@@ -1,0 +1,43 @@
+@import "../../../scss/util/color-utils";
+
+.row {
+  overflow: hidden;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+  float: left;
+
+  div {
+    width: 4px;
+    height: 4px;
+    margin: 3px 3px;
+    // background-color: black;
+  }
+}
+
+$l: 0;
+
+@while $l < 256 {
+  $h: 0;
+
+  @while $h < 256 {
+    $color: hsl($h * 360 / 256, 100%, $l * 100 / 256);
+
+    #h#{$h}l#{$l} {
+      background-color: $color;
+
+      div {
+        background-color: p-color-contrast-options($color, #f0f0f0, #0f0f0f);
+      }
+    }
+
+    $h: $h + 5;
+  }
+
+  $l: $l + 5;
+}
