@@ -1,0 +1,17 @@
+extends base.pug
+
+block styles
+    link(rel="stylesheet", href="/scss/colorScales.scss")
+
+block example
+    .box
+        - var l = 0;
+        while l < 20
+            .cell(id=`grey-${l}`)
+            - ++l;
+
+    .box
+        - var l = 0;
+        while l < 20
+            .cell(id=`blue-${l}`)
+            - ++l;

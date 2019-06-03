@@ -1,0 +1,32 @@
+@import "../../../scss/util/color-utils";
+
+.box {
+    margin: 5px;
+}
+
+.cell {
+    width: 100%;
+    height: 30px;
+}
+
+$l: 0;
+
+@while $l < 20 {
+    #grey-#{$l} {
+        background-color: p-grey-abs-level($l);
+        border: 1px solid black;
+    }
+
+    $l: $l + 1;
+}
+
+$l: -10;
+
+@while $l < 10 {
+    #blue-#{$l+10} {
+        background-color: p-color-level(blue, $l);
+        border: 1px solid black;
+    }
+
+    $l: $l + 1;
+}

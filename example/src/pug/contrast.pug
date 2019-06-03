@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Contrast Test
-        link(rel="stylesheet", href="/scss/contrast.scss")
-    body
-        - var l = 0;
-        while l < 256
-            .row
-                - var h = 0;
-                while h < 256
-                    .cell(id=`h${h}l${l}`)
-                        div
-                    - h += 5;
-            - l += 5;
+extends base.pug
+
+block styles
+    link(rel="stylesheet", href="/scss/contrast.scss")
+
+block example
+    - var l = 0;
+    while l < 256
+        .row
+            - var h = 0;
+            while h < 256
+                .cell(id=`h${h}l${l}`)
+                    div
+                - h += 5;
+        - l += 5;
