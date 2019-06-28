@@ -31,7 +31,7 @@ $l: 0;
       background-color: $color;
 
       div {
-        background-color: p-color-contrast-options($color, #f0f0f0, #0f0f0f);
+        background-color: color-contrast-options($color, #f0f0f0, #0f0f0f);
       }
     }
 

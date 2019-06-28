@@ -1,0 +1,18 @@
+////
+/// Theme utility functions and classes
+/// @group theme-utils
+////
+@import "./theme-variables";
+
+
+////
+/// Get theme color by key
+/// @returns {Color} Color defined by key
+////
+@function get-theme-color($color-key) {
+    @if not map-has-key($map: $theme-colors, $key: $color-key) {
+        @error "Theme color defined by '#{$color-key}' is not defined!";
+    } @else {
+        @return map-get($map: $theme-colors, $key: $color-key);
+    }
+}

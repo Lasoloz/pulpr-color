@@ -1,0 +1,22 @@
+////
+/// Theme utility variables
+/// @group theme-variables
+////
+
+
+/// Map variable defining the theme colors, which are used to generate classes and functions
+$theme-colors: (
+  primary: #6a041d,
+  secondary: #241023,
+  info: #2b75ec,
+  success: #43e950,
+  warning: #fdbe2c,
+  error: #ca0909
+) !default;
+
+
+/// Foreground colors of the theme, which are selected using the color utility functions
+$theme-fg-colors: (
+  light: #efefef,
+  dark: #0f0f0f
+) !default;

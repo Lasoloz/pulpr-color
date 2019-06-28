@@ -11,7 +11,7 @@
 /// @param {Color} $color Color to level up or down (lighten or darken)
 /// @param {Number} $level Level of lightness/darkness (it should always be an integer)
 /// @returns {Color} New color darkened/lightened by level * 5%
-@function p-color-level($color, $level) {
+@function color-level($color, $level) {
   @if $level < 0 {
     @return darken($color, min(-$level * 5%, 100%));
   } @else {
@@ -22,18 +22,18 @@
 /// Get a grey from a 5% stepped lightness scale
 /// @param {Number} $level Level of grey. 0 means black, 19 means white
 /// @returns {Color} Grey color from the color scale
-@function p-grey-abs-level($level) {
+@function grey-abs-level($level) {
   @return lighten(black, $level * 5%);
 }
 
-/// @alias p-grey-abs-level
-@function p-gray-abs-level($level) {
-  @return p-gray-abs-level($level);
+/// @alias grey-abs-level
+@function gray-abs-level($level) {
+  @return gray-abs-level($level);
 }
 
 
 // Contast functions:
-@function p-srgb-relative-luminance-component($component) {
+@function srgb-relative-luminance-component($component) {
   @if $component <= 0.03928 {
     @return $component / 12.92;
   } @else {
@@ -45,15 +45,15 @@
 /// (https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef)
 /// @param {Color} $color1 Color, for which we want to calculate relative luminance
 /// @returns {Number} Relative luminance
-@function p-relative-luminance($color) {
+@function relative-luminance($color) {
   $sr: red($color) / 255;
   $sg: green($color) / 255;
   $sb: blue($color) / 255;
 
   @return
-    0.2126 * p-srgb-relative-luminance-component($sr) +
-    0.7152 * p-srgb-relative-luminance-component($sg) +
-    0.0722 * p-srgb-relative-luminance-component($sb);
+    0.2126 * srgb-relative-luminance-component($sr) +
+    0.7152 * srgb-relative-luminance-component($sg) +
+    0.0722 * srgb-relative-luminance-component($sb);
 }
 
 /// Calculate contrast ratio (https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef)
@@ -61,11 +61,11 @@
 /// @see %p-relative-luminance
 /// @param {Color} $color1
 /// @param {Color} $color2
-/// @require p-relative-luminance
+/// @require relative-luminance
 /// @returns {Color} Calculate contrast ratio of two colors
-@function p-contrast-ratio($color1, $color2) {
-  $lum1: p-relative-luminance($color1);
-  $lum2: p-relative-luminance($color2);
+@function contrast-ratio($color1, $color2) {
+  $lum1: relative-luminance($color1);
+  $lum2: relative-luminance($color2);
 
   @if lightness($color1) > lightness($color2) {
     @return ($lum1 + 0.05) / ($lum2 + 0.05);
@@ -78,16 +78,16 @@
 /// relative luminance
 /// for two different options passed to the base color and select the color option with greater
 /// contrast ratio.
-/// @see p-contrast-ratio
-/// @see p-relative-luminance
+/// @see contrast-ratio
+/// @see relative-luminance
 /// @param {Color} $color Base color for witch we try to select one of the two options
 /// @param {Color} $option1 First option
 /// @param {Color} $option2 Second option
-/// @require p-contrast-ratio
+/// @require contrast-ratio
 /// @returns {Color} One of the two options
-@function p-color-contrast-options($color, $option1, $option2) {
-  $cr1: p-contrast-ratio($color, $option1);
-  $cr2: p-contrast-ratio($color, $option2);
+@function color-contrast-options($color, $option1, $option2) {
+  $cr1: contrast-ratio($color, $option1);
+  $cr2: contrast-ratio($color, $option2);
 
   @if $cr1 > $cr2 {
     @return $option1;
