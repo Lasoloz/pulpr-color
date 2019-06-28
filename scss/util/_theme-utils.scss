@@ -3,16 +3,88 @@
 /// @group theme-utils
 ////
 @import "./theme-variables";
-
+@import "./color-utils";
 
 ////
 /// Get theme color by key
+/// @param {String} $color-key Key of the color requested from the theme colors
 /// @returns {Color} Color defined by key
 ////
 @function get-theme-color($color-key) {
-    @if not map-has-key($map: $theme-colors, $key: $color-key) {
-        @error "Theme color defined by '#{$color-key}' is not defined!";
-    } @else {
-        @return map-get($map: $theme-colors, $key: $color-key);
-    }
+  @if not map-has-key($map: $theme-colors, $key: $color-key) {
+    @error "Theme color defined by '#{$color-key}' is not defined!";
+  } @else {
+    @return map-get($map: $theme-colors, $key: $color-key);
+  }
+}
+
+////
+/// Get lighter foreground color
+/// @returns {Color} Lighter foreground color
+////
+@function get-light-fg-color() {
+  @return map-get($map: $theme-fg-colors, $key: light);
+}
+
+////
+/// Get darker foreground color
+/// @returns {Color} Darker foreground color
+////
+@function get-dark-fg-color() {
+  @return map-get($map: $theme-fg-colors, $key: dark);
+}
+
+////
+/// Get foreground color matching the specific theme color better by contrast
+/// @param {String} $theme-color-key Key of the specific color requested for contrast matching
+/// @returns {Color} Get the foreground color matching the specific theme color better
+////
+@function get-theme-fg-color($theme-color-key) {
+  @if not map-has-key($map: $theme-colors, $key: $theme-color-key) {
+    @error "Theme color defined by '#{$theme-color-key}' is not defined for fg color matching!";
+  } @else {
+    @return color-contrast-options(
+      $color: map-get($theme-colors, $theme-color-key),
+      $option1: get-light-fg-color(),
+      $option2: get-dark-fg-color()
+    );
+  }
+}
+
+////
+/// Create theme color var name using theme color key
+/// @param {String} $color-key Color key used to create theme color css variable name
+/// @returns {String} Theme color css variable name
+////
+@function create-theme-var-name($color-key) {
+  @return "--color-#{$color-key}";
+}
+
+////
+/// Create theme color var name for foreground color of a theme color
+/// @param {String} $color-key Color key used to create theme color foreground css variable name
+/// @returns {String} Theme color foreground css variable name
+////
+@function create-theme-fg-var-name($color-key) {
+  @return "--fg-color-#{$color-key}";
+}
+
+////
+/// Mixin for background theme color with a fallback definition
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-bg-color-fallback($color-key) {
+  $color: get-theme-color($color-key);
+  background-color: var(create-theme-var-name($color-key));
+  background-color: $color;
+}
+
+////
+/// Mixin for foreground theme color contrast color with a provided fallback definition
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-fg-color-fallback($color-key) {
+  $color: get-theme-fg-color($color-key);
+  color: var(create-theme-fg-var-name($color-key));
+  color: $color;
 }
