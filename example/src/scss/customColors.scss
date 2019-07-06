@@ -1,0 +1,47 @@
+// Override before import!
+$theme-colors: (
+    primary: #80530c,
+    secondary: #adf,
+    uglyfic: #10240f
+);
+
+@import "../../../scss/pulpr-color.scss";
+
+.example {
+    overflow: hidden;
+
+    p {
+        font-weight: bold;
+    }
+}
+
+
+.primary {
+    @include theme-bg-color(primary);
+    @include theme-color(primary);
+}
+
+.secondary {
+    @include theme-bg-color(secondary);
+    @include theme-color(secondary);
+}
+
+.primary-inverted {
+    @include theme-inv-bg-color(primary);
+    @include theme-inv-color(primary);
+}
+
+.secondary-inverted {
+    @include theme-inv-bg-color(secondary);
+    @include theme-inv-color(secondary);
+}
+
+.uglyfic {
+    @include theme-bg-color(uglyfic);
+    @include theme-color(uglyfic);
+}
+
+.uglyfic-inverted {
+    @include theme-inv-bg-color(uglyfic);
+    @include theme-inv-color(uglyfic);
+}

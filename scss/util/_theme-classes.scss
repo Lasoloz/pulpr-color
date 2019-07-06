@@ -1,24 +1,24 @@
 @import "./theme-variables";
 @import "./theme-utils";
 
-:root {
-    @each $name, $color in $theme-colors {
-        #{create-theme-var-name($name)}: $color;
-        #{create-theme-fg-var-name($name)}: get-contrast-fg-color($color);
-    }
-}
-
 @each $name in map-keys($map: $theme-colors) {
-    .theme-bg-#{$name} {
-        @include theme-bg-color-fallback($name);
-    }
-
-    .theme-fg-#{$name} {
-        @include theme-fg-color-fallback($name);
+    .theme-bg-color-#{$name} {
+        @include theme-bg-color($name);
     }
 
     .theme-color-#{$name} {
-        @include theme-bg-color-fallback($name);
-        @include theme-fg-color-fallback($name);
+        @include theme-color($name);
+    }
+
+    .theme-border-#{$name} {
+        @include theme-color($name);
+    }
+
+    .theme-inv-bg-color-#{$name} {
+        @include theme-inv-bg-color($name);
+    }
+
+    .theme-inv-color-#{$name} {
+        @include theme-inv-color($name);
     }
 }

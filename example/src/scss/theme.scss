@@ -1,5 +1,9 @@
-@import "../../../scss/util/theme-classes";
+@import "../../../scss/pulpr-color-classes.scss";
 
 .example {
     overflow: hidden;
+
+    p {
+        font-weight: bold;
+    }
 }

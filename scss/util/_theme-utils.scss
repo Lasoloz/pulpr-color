@@ -70,21 +70,74 @@
 }
 
 ////
+/// Define theme color variable and theme color fallback color properties with a specific color key
+/// @param {String} $property Property with color definitions
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-property-with-fallback($property, $color-key) {
+  $color: get-theme-color($color-key);
+  #{$property}: $color;
+  #{$property}: var(#{create-theme-var-name($color-key)});
+}
+
+////
+/// Define theme foreground color variable and theme foreground color fallback color properties
+/// with a specific color key
+/// @param {String} $property Property with color definitions
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-fg-property-with-fallback($property, $color-key) {
+  $color: get-theme-fg-color($color-key);
+  #{$property}: $color;
+  #{$property}: var(#{create-theme-fg-var-name($color-key)});
+}
+
+////
 /// Mixin for background theme color with a fallback definition
 /// @param {String} $color-key Theme color key
 ////
-@mixin theme-bg-color-fallback($color-key) {
-  $color: get-theme-color($color-key);
-  background-color: var(create-theme-var-name($color-key));
-  background-color: $color;
+@mixin theme-bg-color($color-key) {
+  @include theme-property-with-fallback(background-color, $color-key);
 }
 
 ////
 /// Mixin for foreground theme color contrast color with a provided fallback definition
 /// @param {String} $color-key Theme color key
 ////
-@mixin theme-fg-color-fallback($color-key) {
-  $color: get-theme-fg-color($color-key);
-  color: var(create-theme-fg-var-name($color-key));
-  color: $color;
+@mixin theme-color($color-key) {
+  @include theme-fg-property-with-fallback(color, $color-key);
+}
+
+////
+/// Mixin for border theme coloring with a fallback definition
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-border-color($color-key) {
+  @include theme-property-with-fallback(border, $color-key);
+}
+
+////
+/// Mixin for inverted background theme coloring with fallback definitions
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-inv-bg-color($color-key) {
+  @include theme-fg-property-with-fallback(background-color, $color-key);
+}
+
+////
+/// Mixin for inverted foreground theme coloring with fallback definitions
+/// @param {String} $color-key Theme color key
+////
+@mixin theme-inv-color($color-key) {
+  @include theme-property-with-fallback(color, $color-key);
+}
+
+////
+/// Color mappings of the theme to css variables
+////
+:root {
+  @each $name, $color in $theme-colors {
+    #{create-theme-var-name($name)}: $color;
+    #{create-theme-fg-var-name($name)}: get-theme-fg-color($name);
+  }
 }
