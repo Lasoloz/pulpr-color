@@ -7,7 +7,9 @@
     "clean:dev": "rm -rf example/dist",
     "clean:docs": "rm -rf docs",
     "clean": "yarn clean:prod && yarn clean:dev && yarn clean:docs",
-    "build": "yarn clean:prod && sass --load-path=node_modules src/scss:dist/css",
+    "build:sass": "sass --load-path=node_modules src/scss:dist/css",
+    "build:ts": "parcel build --out-dir ./dist/js/ --out-file pulprColor.js src/ts/pulprColor.ts",
+    "build": "yarn clean:prod && yarn build:sass && yarn build:ts",
     "doc:sass": "sassdoc scss -d docs/scss",
     "doc": "yarn doc:sass",
     "serve": "parcel serve -d example/dist example/src/index.pug"
@@ -15,11 +17,11 @@
   "author": "László Heim <lasolozdev@gmail.com>",
   "license": "MIT",
   "private": false,
-  "dependencies": {},
   "devDependencies": {
     "mathsass": "^0.10.1",
     "parcel-bundler": "^1.12.3",
     "pug": "^2.0.3",
-    "sass": "^1.20.3"
+    "sass": "^1.20.3",
+    "typescript": "^3.5.3"
   }
 }

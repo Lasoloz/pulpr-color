@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "dist/js/pulprColor.js",
+        "alwaysStrict": true
+    },
+    "files": [
+        "src/ts/pulprColor.ts"
+    ],
+    "include": [
+        "src/js/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

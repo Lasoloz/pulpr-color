@@ -1,5 +1,3 @@
-"use strict";
-
 function isColorStr(color: any): boolean {
     if (typeof color !== "string") {
         return false;
@@ -24,5 +22,5 @@ function changeThemeColor(color: string): boolean {
     }
 
     const root = document.documentElement;
-    // TODO: FINISH THIS + set up tslint + build + minimizer!
+    root.style.setProperty("--color-primary", color);
 }
