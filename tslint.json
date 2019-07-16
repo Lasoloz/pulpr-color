@@ -5,7 +5,8 @@
     ],
     "jsRules": {},
     "rules": {
-        "no-consecutive-blank-lines": false
+        "no-consecutive-blank-lines": false,
+        "trailing-comma": false
     },
     "rulesDirectory": []
 }

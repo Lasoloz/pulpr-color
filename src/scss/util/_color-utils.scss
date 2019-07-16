@@ -67,7 +67,7 @@
   $lum1: relative-luminance($color1);
   $lum2: relative-luminance($color2);
 
-  @if lightness($color1) > lightness($color2) {
+  @if $lum1 > $lum2 {
     @return ($lum1 + 0.05) / ($lum2 + 0.05);
   } @else {
     @return ($lum2 + 0.05) / ($lum1 + 0.05);
