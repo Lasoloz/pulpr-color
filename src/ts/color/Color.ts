@@ -1,15 +1,15 @@
 export default class Color {
-  public static WHITE_LIKE = Color.fromHexaString("#efefef");
-  public static BLACK_LIKE = Color.fromHexaString("#0f0f0f");
+  public static WHITE_LIKE = Color.fromHexString("#efefef");
+  public static BLACK_LIKE = Color.fromHexString("#0f0f0f");
 
-  public static fromHexaString(colorStr: string): Color {
+  public static fromHexString(colorStr: string): Color {
     let matches: RegExpMatchArray;
     let hex3: boolean = false;
     if (colorStr.length === 4) {
-      matches = colorStr.match(/^#([0-9])([0-9])([0-9])$/i);
+      matches = colorStr.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
       hex3 = true;
     } else if (colorStr.length === 7) {
-      matches = colorStr.match(/^#([0-9]{2})([0-9]{2})([0-9]{2})$/i);
+      matches = colorStr.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
     } else {
       throw new Error("Color string must be 4 or 7 characters long to match `#rrggbb` or `#rgb` format!");
     }
@@ -28,7 +28,7 @@ export default class Color {
   private static RELATIVE_LUM_BLUE_MULT = 0.0722;
 
   private static processMatches(matches: RegExpMatchArray, hex3: boolean): Color {
-    if (matches.length !== 4) {
+    if (matches == null || matches.length !== 4) {
       throw new Error("Color is not matching `#rrggbb` or `#rgb` format!");
     }
 
@@ -41,7 +41,7 @@ export default class Color {
 
   private static parseComponent(compStr: string, scale: boolean): number {
     // Since called after regex, correct string is always provided
-    return parseInt(compStr + scale ? compStr : "", 16);
+    return parseInt(compStr + (scale ? compStr : ""), 16);
   }
 
 
@@ -129,6 +129,6 @@ export default class Color {
 
   private paddedComponent(value: number): string {
     const str = value.toString(16);
-    return str.length === 1 ? "0" : "" + str;
+    return (str.length === 1 ? "0" : "") + str;
   }
 }

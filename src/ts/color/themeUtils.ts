@@ -39,7 +39,7 @@ export function modifyThemeColorWithFg(
     throw new Error("You must provide a valid color string when modifyinh theme background and foreground color!");
   }
   const rootStyle = getRootStyle();
-  const fgColor = Color.fromHexaString(colorValue).getContrastColor();
+  const fgColor = Color.fromHexString(colorValue).getContrastColor();
   rootStyle.setProperty(createPulprColorKey(themeKey), colorValue);
   rootStyle.setProperty(createPulprColorKey(themeKey, true), fgColor.toString());
 }
