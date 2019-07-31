@@ -10,6 +10,9 @@ node_modules
 # Parcel cache
 .cache/
 
+# Test screenshots
+.test/
+
 /tests/e2e/reports/
 selenium-debug.log
 

@@ -10,9 +10,6 @@
     "files": [
         "src/ts/pulprColor.ts"
     ],
-    "include": [
-        "src/js/**/*"
-    ],
     "exclude": [
         "node_modules"
     ]

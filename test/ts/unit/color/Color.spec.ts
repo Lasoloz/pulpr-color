@@ -1,4 +1,4 @@
-import Color from "../../../src/ts/color/Color";
+import Color from "../../../../src/ts/color/Color";
 
 describe("`Color` class", () => {
   test("should be instantiable from `#rgb` notation", () => {

@@ -1,4 +1,4 @@
-import { isColorStr } from "../../../src/ts/color/themeUtils";
+import { isColorStr } from "../../../../src/ts/color/themeUtils";
 
 describe("`isColorStr` function", () => {
   it.each`
