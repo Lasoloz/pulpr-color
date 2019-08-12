@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-        "module": "amd",
+        "module": "commonjs",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "outFile": "dist/js/pulprColor.js",
+        "outDir": "dist/js/",
         "alwaysStrict": true
     },
     "files": [
