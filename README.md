@@ -26,6 +26,7 @@ The JavaScript utilities also provide a fallback for dynamic coloring on older p
 
 ## Usage:
 
+TODO: Important notice about including both the library and both the node_modules for mathsass!
 Coming soon!
 
 
