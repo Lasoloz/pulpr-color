@@ -11,7 +11,7 @@
     }
 
     .theme-border-#{$name} {
-        @include theme-color($name);
+        @include theme-border-color($name);
     }
 
     .theme-inv-bg-color-#{$name} {
