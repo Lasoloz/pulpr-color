@@ -14,8 +14,10 @@
 @function color-level($color, $level) {
   @if $level < 0 {
     @return darken($color, min(-$level * 5%, 100%));
-  } @else {
+  } @else if $level > 0 {
     @return lighten($color, min($level * 5%, 100%));
+  } @else {
+    @return $color;
   }
 }
 

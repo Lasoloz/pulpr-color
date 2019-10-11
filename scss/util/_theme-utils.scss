@@ -8,13 +8,15 @@
 ////
 /// Get theme color by key
 /// @param {String} $color-key Key of the color requested from the theme colors
+/// @param {Number} $level Color darkening or lightening level
 /// @returns {Color} Color defined by key
 ////
-@function get-theme-color($color-key) {
+@function get-theme-color($color-key, $level: 0) {
   @if not map-has-key($map: $theme-colors, $key: $color-key) {
     @error "Theme color defined by '#{$color-key}' is not defined!";
   } @else {
-    @return map-get($map: $theme-colors, $key: $color-key);
+    $color: map-get($theme-colors, $color-key);
+    @return color-level($color, $level);
   }
 }
 
@@ -37,14 +39,16 @@
 ////
 /// Get foreground color matching the specific theme color better by contrast
 /// @param {String} $theme-color-key Key of the specific color requested for contrast matching
+/// @param {Number} $level Color darkening or lightening level
 /// @returns {Color} Get the foreground color matching the specific theme color better
 ////
-@function get-theme-fg-color($theme-color-key) {
+@function get-theme-fg-color($theme-color-key, $level: 0) {
   @if not map-has-key($map: $theme-colors, $key: $theme-color-key) {
     @error "Theme color defined by '#{$theme-color-key}' is not defined for fg color matching!";
   } @else {
+    $color: map-get($theme-colors, $theme-color-key);
     @return color-contrast-options(
-      $color: map-get($theme-colors, $theme-color-key),
+      $color: color-level($color, $level),
       $option1: get-light-fg-color(),
       $option2: get-dark-fg-color()
     );
