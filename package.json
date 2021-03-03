@@ -24,7 +24,7 @@
     "jest": "^23",
     "mathsass": "^0.10.1",
     "parcel-bundler": "^1.12.3",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "puppeteer": "^1.19.0",
     "sass": "^1.20.3",
     "ts-jest": "^23",
